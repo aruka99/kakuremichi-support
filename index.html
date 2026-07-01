@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data:; connect-src 'none'; media-src 'self'; object-src 'none'; frame-src 'none'; worker-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+  <meta name="description" content="AIが穴場を見つけ、目的地を隠したまま矢印で案内する散歩アプリ『かくれみち』の公式サポートサイトです。">
+  <meta name="theme-color" content="#1c211f">
+  <title>かくれみち | AIで穴場発見・散歩ナビ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css?v=20260702a">
+</head>
+<body>
+  <a class="skip-link" href="#main">本文へ移動</a>
+  <div class="journey-progress" aria-hidden="true"><i></i><span>まだ知らない道へ</span></div>
+
+  <header class="site-header" aria-label="メインナビゲーション">
+    <a class="brand" href="#top" aria-label="かくれみち ホーム">かくれみち</a>
+    <nav class="desktop-nav">
+      <a href="#story">特徴</a>
+      <a href="#steps">使い方</a>
+      <a href="#faq">よくある質問</a>
+      <a href="#support">サポート</a>
+    </nav>
+    <button class="menu-button" type="button" aria-label="メニューを開く" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="hero-photo" aria-hidden="true"></div>
+      <div class="hero-shade" aria-hidden="true"></div>
+      <canvas id="ambient-canvas" aria-hidden="true"></canvas>
+
+      <img class="float-layer decor decor-map" src="./assets/decor/map-grid.png" alt="" data-depth="0.16">
+      <img class="float-layer decor decor-note" src="./assets/decor/paper-note.png" alt="" data-depth="0.22">
+      <img class="float-layer decor decor-photo" src="./assets/decor/polaroid-alley.png" alt="" data-depth="0.3">
+      <img class="float-layer decor decor-arrow" src="./assets/decor/paper-arrow.png" alt="" data-depth="0.36">
+      <img class="float-layer decor decor-sparkles" src="./assets/decor/gold-sparkles.png" alt="" data-depth="0.42">
+
+      <svg class="route-line" viewBox="0 0 900 700" aria-hidden="true">
+        <path class="route-path" d="M820,690 C760,610 810,520 714,470 C625,424 660,332 573,292 C500,258 536,181 470,142" />
+        <g class="route-traveler">
+          <circle r="17"></circle>
+          <path d="M-6 7 7 0-6-7-2 0Z"></path>
+        </g>
+      </svg>
+
+      <div class="hero-copy">
+        <p class="eyebrow">AIで穴場発見・散歩ナビ</p>
+        <h1 id="hero-title">まだ知らない場所は、<br>いつもの街にある。</h1>
+        <p class="hero-lead">目的地を知らないまま歩く。<br>その少しの遠回りが、街を特別にします。</p>
+        <div class="hero-actions">
+          <a class="primary-action" href="#support">アプリではじめる <span aria-hidden="true">→</span></a>
+          <a class="text-action" href="#story">かくれみちについて <span aria-hidden="true">↘</span></a>
+        </div>
+      </div>
+
+      <div class="scroll-cue" aria-hidden="true"><span>SCROLL</span><i></i></div>
+    </section>
+
+    <section class="story paper-band" id="story" aria-labelledby="story-title">
+      <img class="torn-paper-edge" src="./assets/torn-paper-edge.webp" alt="" aria-hidden="true">
+      <img class="section-decor story-stamp" src="./assets/decor/coral-stamp.png" alt="">
+      <img class="section-decor story-leaf" src="./assets/decor/leaf-sprig.png" alt="">
+      <div class="section-inner story-grid">
+        <div>
+          <p class="section-kicker">THE HIDDEN WAY</p>
+          <h2 id="story-title">目的地は、<br>着くまで秘密。</h2>
+        </div>
+        <div class="story-copy">
+          <p>かくれみちは、口コミの数だけでは見つからない小さな名店や、静かな公園、古い街角を探します。</p>
+          <p>画面に現れるのは、店名でも地図のピンでもなく、進む方向を示す矢印だけ。安全はいつでも確認できます。</p>
+          <div class="secret-note" aria-label="目的地は到着まで非公開です">
+            <span>DESTINATION</span>
+            <strong>？？？</strong>
+            <small>到着まで封印中</small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="steps" id="steps" aria-labelledby="steps-title">
+      <div class="section-inner">
+        <p class="section-kicker">HOW IT WORKS</p>
+        <h2 id="steps-title">知らない街と出会うまで。</h2>
+        <ol class="step-list">
+          <li>
+            <span class="step-number">01</span>
+            <div><h3>気分を選ぶ</h3><p>時間と気分、気になるカテゴリを選びます。</p></div>
+          </li>
+          <li>
+            <span class="step-number">02</span>
+            <div><h3>矢印をたどる</h3><p>目的地の名前は見せず、進む方向だけをご案内。</p></div>
+          </li>
+          <li>
+            <span class="step-number">03</span>
+            <div><h3>思い出を残す</h3><p>到着した場所を写真や動画、ステッカーで記録できます。</p></div>
+          </li>
+        </ol>
+      </div>
+      <img class="section-decor step-map" src="./assets/decor/map-route.png" alt="">
+      <img class="section-decor step-tape" src="./assets/decor/washi-blue.png" alt="">
+    </section>
+
+    <section class="faq paper-band" id="faq" aria-labelledby="faq-title">
+      <div class="section-inner faq-layout">
+        <div class="faq-heading">
+          <p class="section-kicker">FAQ</p>
+          <h2 id="faq-title">よくある質問</h2>
+          <p>散歩の前に、気になることを。</p>
+        </div>
+        <div class="accordion">
+          <details>
+            <summary>目的地が分からなくても安全ですか？</summary>
+            <p>散歩中は安全メニューから、いつでも目的地を確認できます。散歩の中止や地図アプリで帰り道を開く操作も用意しています。</p>
+          </details>
+          <details>
+            <summary>地方や郊外でも使えますか？</summary>
+            <p>近くに候補がない場合は検索範囲を広げたり、別のカテゴリを提案します。地域によって候補数は異なります。</p>
+          </details>
+          <details>
+            <summary>写真や動画は公開されますか？</summary>
+            <p>撮影した写真や動画は、ユーザーが共有操作をしない限り自動でSNSへ公開されません。</p>
+          </details>
+          <details>
+            <summary>サブスクリプションを解約するには？</summary>
+            <p>iPhoneの設定、またはApp Storeのサブスクリプション管理画面から、いつでも確認・解約できます。</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="support" id="support" aria-labelledby="support-title">
+      <div class="support-light" aria-hidden="true"></div>
+      <div class="section-inner support-grid">
+        <div>
+          <p class="section-kicker">SUPPORT</p>
+          <h2 id="support-title">道に迷ったら、<br>ここへ戻ってきてください。</h2>
+        </div>
+        <div class="support-actions">
+          <a class="support-link" href="mailto:kakuremichi.support@gmail.com">
+            <span>お問い合わせ</span><small>kakuremichi.support@gmail.com</small><b aria-hidden="true">↗</b>
+          </a>
+          <a class="support-link" href="./privacy/">
+            <span>プライバシーポリシー</span><small>データと位置情報の取り扱い</small><b aria-hidden="true">↗</b>
+          </a>
+          <a class="support-link" href="./terms/">
+            <span>利用規約</span><small>サービスのご利用条件</small><b aria-hidden="true">↗</b>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="brand" href="#top">かくれみち</a>
+    <p>いつもの道の、少し先へ。</p>
+    <small>© 2026 かくれみち</small>
+  </footer>
+
+  <script src="./vendor/gsap.min.js?v=20260701b"></script>
+  <script src="./vendor/ScrollTrigger.min.js?v=20260701b"></script>
+  <script type="module" src="./app.js?v=20260702a"></script>
+</body>
+</html>
