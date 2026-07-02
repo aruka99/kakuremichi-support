@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>kakuremichi captcha bridge</title>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+<style>
+  html,body{margin:0;padding:0;background:transparent;}
+  .wrap{display:flex;justify-content:center;align-items:center;height:100vh;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div id="cf-widget"
+       class="cf-turnstile"
+       data-sitekey="0x4AAAAAADuP9cNSTXjmCTly"
+       data-callback="onTurnstileSuccess"
+       data-error-callback="onTurnstileError"
+       data-timeout-callback="onTurnstileError"
+       data-theme="light"></div>
+</div>
+<script>
+  // WKWebView側の window.webkit.messageHandlers.turnstile へ結果を橋渡しする。
+  // ブラウザで直接開いた場合（messageHandlersが無い場合）は何もしない。
+  function post(t){ try { window.webkit.messageHandlers.turnstile.postMessage(t); } catch(e){} }
+  function onTurnstileSuccess(token){ post(token); }
+  function onTurnstileError(){ post(""); }
+</script>
+</body>
+</html>
